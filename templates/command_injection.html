@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <h1 class="title">Command Injection</h1>
+
+  <div class="block">
+    <p>Enter a hostname or IP to ping. The input is passed directly to <code>subprocess.run(..., shell=True)</code>.</p>
+  </div>
+
+  <div class="block">
+    <form action="/command-injection" method="get" style="max-width: 400px;">
+      <div class="field">
+        <label class="label">Host</label>
+        <div class="control">
+          <input class="input" name="host" type="text" placeholder="e.g. 127.0.0.1" value="{{ host }}">
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <button class="button is-link">Ping</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  {% if output %}
+  <div class="block">
+    <pre>{{ output }}</pre>
+  </div>
+  {% endif %}
+</section>
+
+{% endblock %}
