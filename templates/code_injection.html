@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <h1 class="title">Code Injection - eval()</h1>
+
+  <div class="block">
+    <p>Enter a Python expression to evaluate. User input is passed directly to <code>eval()</code>.</p>
+  </div>
+
+  <div class="block">
+    <form action="/code-injection" method="get" style="max-width: 400px;">
+      <div class="field">
+        <label class="label">Expression</label>
+        <div class="control">
+          <input class="input" name="expr" type="text" placeholder="e.g. 1+1" value="{{ expression }}">
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <button class="button is-link">Evaluate</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  {% if result is not none %}
+  <div class="block">
+    <p><strong>Result:</strong> <code>{{ result }}</code></p>
+  </div>
+  {% endif %}
+</section>
+
+{% endblock %}
