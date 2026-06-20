@@ -8,6 +8,10 @@ from vulns.ssrf.ssrf import ssrf_page, ssrf_api
 from vulns.path_traversal.path_traversal import path_traversal_page, path_traversal_image
 from vulns.idor.idor import idor_login_page, idor_login_api, idor_profile_page
 from vulns.iframe_injection.iframe_injection import iframe_injection_page
+from vulns.code_injection.code_injection import code_injection_page
+from vulns.command_injection.command_injection import command_injection_page
+from vulns.hardcoded_secrets.hardcoded_secrets import hardcoded_secrets_page
+from vulns.weak_crypto.weak_crypto import weak_crypto_page
 from util import get_root_dir
 from db_helper import db_helper
 from db_models import db_models
@@ -112,3 +116,23 @@ def idor_profile():
 @app.route('/iframe-injection', methods=['GET'])
 def iframe_injection():
     return iframe_injection_page(request, app)
+
+
+@app.route('/command-injection', methods=['GET'])
+def command_injection():
+    return command_injection_page(request, app)
+
+
+@app.route('/hardcoded-secrets', methods=['GET'])
+def hardcoded_secrets():
+    return hardcoded_secrets_page(request, app)
+
+
+@app.route('/weak-crypto', methods=['GET'])
+def weak_crypto():
+    return weak_crypto_page(request, app)
+
+
+@app.route('/code-injection', methods=['GET'])
+def code_injection():
+    return code_injection_page(request, app)
