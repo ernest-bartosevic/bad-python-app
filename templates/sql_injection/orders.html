@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <h1 class="title">SQL Injection - Orders Lookup</h1>
+
+  <div class="block">
+    <p>Look up orders by user ID. Input is interpolated directly into the SQL query.</p>
+  </div>
+
+  <div class="block">
+    <form action="/sql-injection/orders" method="get" style="max-width: 300px;">
+      <div class="field">
+        <label class="label">User ID</label>
+        <div class="control">
+          <input class="input" name="user_id" type="text" placeholder="e.g. 1" value="{{ user_id }}">
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <button class="button is-link">Lookup</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  {% if orders %}
+  <div class="block">
+    <table class="table is-striped">
+      <thead>
+        <tr><th>ID</th><th>User ID</th><th>Total</th></tr>
+      </thead>
+      <tbody>
+        {% for o in orders %}
+        <tr><td>{{ o.id }}</td><td>{{ o.user_id }}</td><td>{{ o.total }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+</section>
+
+{% endblock %}

@@ -10,6 +10,9 @@ from vulns.idor.idor import idor_login_page, idor_login_api, idor_profile_page
 from vulns.iframe_injection.iframe_injection import iframe_injection_page
 from vulns.code_injection.code_injection import code_injection_page
 from vulns.command_injection.command_injection import command_injection_page
+from vulns.command_injection.file_info import file_info_page
+from vulns.sql_injection.sql_injection_orders import sql_injection_orders_page
+from vulns.weak_crypto.token_generator import token_generator_page
 from vulns.hardcoded_secrets.hardcoded_secrets import hardcoded_secrets_page
 from vulns.weak_crypto.weak_crypto import weak_crypto_page
 from util import get_root_dir
@@ -136,3 +139,18 @@ def weak_crypto():
 @app.route('/code-injection', methods=['GET'])
 def code_injection():
     return code_injection_page(request, app)
+
+
+@app.route('/sql-injection/orders', methods=['GET'])
+def sql_injection_orders():
+    return sql_injection_orders_page(request, app)
+
+
+@app.route('/weak-crypto/token', methods=['GET'])
+def weak_crypto_token():
+    return token_generator_page(request, app)
+
+
+@app.route('/command-injection/file-info', methods=['GET'])
+def command_injection_file_info():
+    return file_info_page(request, app)
