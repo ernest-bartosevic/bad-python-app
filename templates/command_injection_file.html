@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="section">
+  <h1 class="title">Command Injection - File Info</h1>
+
+  <div class="block">
+    <p>Get info about a file. The filename is passed directly to <code>subprocess.run(..., shell=True)</code>.</p>
+  </div>
+
+  <div class="block">
+    <form action="/command-injection/file-info" method="get" style="max-width: 400px;">
+      <div class="field">
+        <label class="label">Filename</label>
+        <div class="control">
+          <input class="input" name="filename" type="text" placeholder="e.g. /etc/passwd" value="{{ filename }}">
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <button class="button is-link">Get Info</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  {% if output %}
+  <div class="block">
+    <pre>{{ output }}</pre>
+  </div>
+  {% endif %}
+</section>
+
+{% endblock %}
